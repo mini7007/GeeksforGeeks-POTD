@@ -116,24 +116,22 @@ void sort012(int arr[], int n) {
 ```cpp
 class Solution {
 public:
-    void sort012(vector<int>& arr) {
-        int low = 0, mid = 0, high = arr.size() - 1;
-
-        while (mid <= high) {
-            switch (arr[mid]) {
-                case 0:
-                    swap(arr[mid++], arr[low++]);
-                    break;
-                case 1:
-                    mid++;
-                    break;
-                case 2:
-                    swap(arr[mid], arr[high--]);
-                    break;
+    int hIndex(vector<int>& citations) {
+        int n = citations.size();
+        sort(citations.begin(), citations.end(), greater<int>()); // Sort in descending order
+        int hIndex = 0;
+        
+        for (int i = 0; i < n; i++) {
+            if (citations[i] >= i + 1) {
+                hIndex = i + 1;
+            } else {
+                break;
             }
         }
+        return hIndex;
     }
 };
+
 ```
 
 
